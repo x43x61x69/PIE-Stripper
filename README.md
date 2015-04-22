@@ -6,6 +6,8 @@
 
 Currently it supports **i386**, **x86_64** and **FAT** binary.
 
+For more information, please check out the [Technical Q&A QA1788](https://developer.apple.com/library/mac/qa/qa1788/_index.html).
+
 ##Compiling
 
 - Compiling the example `aslr` executable with following command:
