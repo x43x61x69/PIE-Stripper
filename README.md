@@ -1,6 +1,6 @@
 #PIE Stripper
 
-[![Author](https://img.shields.io/badge/Author-Zhi--Wei_Cai-red.svg?style=flat-square)](http://vox.vg/)  ![Build](https://img.shields.io/badge/Build-v0.1-green.svg?style=flat-square)  ![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
+[![Author](https://img.shields.io/badge/Author-Zhi--Wei_Cai-red.svg?style=flat-square)](http://vox.vg/)  ![Build](https://img.shields.io/badge/Build-v0.2-green.svg?style=flat-square)  ![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)
 
 "**PIE Stripper**" is a *Position Independent Executable*/*Address Space Layout Randomization* (**PIE**/**ASLR**) remover for Mach-O binary.
 
@@ -81,7 +81,8 @@ Redo the steps above and see the differences.
 
 ##Changelog
 
-- **0.1**：Initial release. 
+- **0.2**: Add support for `MH_NO_HEAP_EXECUTION`.
+- **0.1**: Initial release. 
 
 ##License
 

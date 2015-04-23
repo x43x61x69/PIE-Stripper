@@ -1,6 +1,6 @@
 //
 // Name:    PIE Stripper
-// Version:	0.1
+// Version:	0.2
 //
 // The MIT License (MIT)
 //
@@ -26,7 +26,7 @@
 //
 // Compile: gcc -Wall -O2 -o piestrip piestrip.c
 
-#define VERSION "0.1"
+#define VERSION "0.2"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -56,9 +56,15 @@ void printLog(char *errMsg, int errType) {
 }
 
 int stripASLR(struct mach_header *mh, char *addr, size_t size) {
-    printLog(" >>> Stripping...", 0);
-    if (mh->flags & MH_PIE) {
-        mh->flags &= ~MH_PIE;
+    if (mh->flags & MH_PIE || mh->flags & MH_NO_HEAP_EXECUTION) {
+        if (mh->flags & MH_PIE) {
+            printLog(" >>> Stripping MH_PIE...", 0);
+            mh->flags &= ~MH_PIE;
+        }
+        if (mh->flags & MH_NO_HEAP_EXECUTION) {
+            printLog(" >>> Stripping MH_NO_HEAP_EXECUTION...", 0);
+            mh->flags &= ~MH_NO_HEAP_EXECUTION;
+        }
         msync(addr, size, MS_ASYNC);
         return 1;
     }
@@ -66,9 +72,15 @@ int stripASLR(struct mach_header *mh, char *addr, size_t size) {
 }
 
 int stripASLR64(struct mach_header_64 *mh, char *addr, size_t size) {
-    printLog(" >>> Stripping PIE...", 0);
-    if (mh->flags & MH_PIE) {
-        mh->flags &= ~MH_PIE;
+    if (mh->flags & MH_PIE || mh->flags & MH_NO_HEAP_EXECUTION) {
+        if (mh->flags & MH_PIE) {
+            printLog(" >>> Stripping MH_PIE...", 0);
+            mh->flags &= ~MH_PIE;
+        }
+        if (mh->flags & MH_NO_HEAP_EXECUTION) {
+            printLog(" >>> Stripping MH_NO_HEAP_EXECUTION...", 0);
+            mh->flags &= ~MH_NO_HEAP_EXECUTION;
+        }
         msync(addr, size, MS_ASYNC);
         return 1;
     }
